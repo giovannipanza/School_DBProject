@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS Articoli;
+
 CREATE DATABASE Articoli;
 
 USE articoli;
