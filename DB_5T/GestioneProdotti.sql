@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS Gestione_Prodotti;
 
--- creo il data base
+-- creo il database
 CREATE DATABASE Gestione_Prodotti;
 
 USE Gestione_Prodotti;
