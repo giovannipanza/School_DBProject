@@ -1,4 +1,5 @@
 Considerando la seguente base di dati:
+
 Fornitori (CodiceFornitore, Nome, Indirizzo, Città) 
 Prodotti (CodiceProdotto, Nome, Marca, Modello) 
 Catalogo (CodiceFornitore, CodiceProdotto, Costo)
