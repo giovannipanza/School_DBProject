@@ -9,6 +9,6 @@ Catalogo (CodiceFornitore, CodiceProdotto, Costo)
 meno di 2000 €.
 2. Trovare i nomi dei fornitori che distribuiscono prodotti IBM
 (IBM è la marca di un prodotto).
-3. Trovare i codici di tutti i prodotti che sono forniti da almeno due fornitori.
+3. Trovare i codici di tutti i prodotti che sono forniti da uno specifico fornitore.
 4. Trovare i nomi dei fornitori che distribuiscono tutti i prodotti
-presenti nel catalogo.
+di un certp tipo
