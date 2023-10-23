@@ -37,3 +37,4 @@ CREATE Table catalogo (
     Foreign Key (codice_prodotto) 
             REFERENCES prodotti(codice_prodotto)
 );
+
