@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS 5q_gestione_prodotti;
+
+CREATE DATABASE gestione_prodotti;
+
 -- Crea la tabella Fornitori
 CREATE TABLE Fornitori (
   CodiceFornitore INT AUTO_INCREMENT,
