@@ -14,6 +14,47 @@ CREATE TABLE Impiegato (
 );
 
 -- inserisco i dati nella tabella Impiegato, inseriscimi 10 impiegati diversi
+
+
+-- creo la tabella Dipartimento (Codice,Nome,Sede,Direttore)
+CREATE TABLE Dipartimento (
+    Codice INT AUTO_INCREMENT,
+    Nome VARCHAR(30) NOT NULL,
+    Sede VARCHAR(30) NOT NULL,
+    Direttore INT NOT NULL,
+    PRIMARY KEY (Codice),
+    FOREIGN KEY (Direttore) REFERENCES Impiegato(Matricola)
+);
+-- inserisco i dati nella tabella Dipartimento, inseriscimi 10 dipartimenti diversi
+
+
+
+-- creo la tabella Progetto (Sigla,Nome,Bilancio,Responsabile)
+CREATE TABLE Progetto (
+    Sigla VARCHAR(30),
+    Nome VARCHAR(30) NOT NULL,
+    Bilancio DECIMAL (10,2) NOT NULL,
+    Responsabile INT NOT NULL,
+    PRIMARY KEY (Sigla),
+    FOREIGN KEY (Responsabile) REFERENCES Impiegato(Matricola)
+);
+
+
+
+-- creo la tabella Partecipazione (Impiegato,Progetto)
+CREATE TABLE Partecipazione (
+    Impiegato INT NOT NULL,
+    Progetto VARCHAR(30) NOT NULL,
+    PRIMARY KEY (Impiegato,Progetto),
+    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
+    FOREIGN KEY (Progetto) REFERENCES Progetto(Sigla)
+);
+
+
+
+-- devo aggiungere sulla tabellq Impiegato un vincolo di integrità referenziale che impedisca di inserire un impiegato con un dipartimento non esistente
+
+
 INSERT INTO Impiegato (Matricola,Cognome,Stipendio,Dipartimento) 
         VALUES (1,'Rossi',1000,1), 
         (2,'Verdi',2000,2), 
@@ -26,16 +67,6 @@ INSERT INTO Impiegato (Matricola,Cognome,Stipendio,Dipartimento)
         (9,'Rosa',9000,9), 
         (10,'Marroni',10000,10);
 
--- creo la tabella Dipartimento (Codice,Nome,Sede,Direttore)
-CREATE TABLE Dipartimento (
-    Codice INT AUTO_INCREMENT,
-    Nome VARCHAR(30) NOT NULL,
-    Sede VARCHAR(30) NOT NULL,
-    Direttore INT NOT NULL,
-    PRIMARY KEY (Codice),
-    FOREIGN KEY (Direttore) REFERENCES Impiegato(Matricola)
-);
--- inserisco i dati nella tabella Dipartimento, inseriscimi 10 dipartimenti diversi
 INSERT INTO Dipartimento (Nome,Sede,Direttore) 
         VALUES ('Dipartimento 1','Sede 1',1), 
         ('Dipartimento 2','Sede 2',2), 
@@ -47,17 +78,6 @@ INSERT INTO Dipartimento (Nome,Sede,Direttore)
         ('Dipartimento 8','Sede 8',8), 
         ('Dipartimento 9','Sede 9',9), 
         ('Dipartimento 10','Sede 10',10);
-
-
--- creo la tabella Progetto (Sigla,Nome,Bilancio,Responsabile)
-CREATE TABLE Progetto (
-    Sigla VARCHAR(30),
-    Nome VARCHAR(30) NOT NULL,
-    Bilancio DECIMAL (10,2) NOT NULL,
-    Responsabile INT NOT NULL,
-    PRIMARY KEY (Sigla),
-    FOREIGN KEY (Responsabile) REFERENCES Impiegato(Matricola)
-);
 
 -- inserisco i dati nella tabella Progetto, inseriscimi 10 progetti diversi
 INSERT INTO Progetto (Sigla,Nome,Bilancio,Responsabile) 
@@ -72,14 +92,6 @@ INSERT INTO Progetto (Sigla,Nome,Bilancio,Responsabile)
         ('Sigla 9','Progetto 9',9000,9), 
         ('Sigla 10','Progetto 10',10000,10);
 
--- creo la tabella Partecipazione (Impiegato,Progetto)
-CREATE TABLE Partecipazione (
-    Impiegato INT NOT NULL,
-    Progetto VARCHAR(30) NOT NULL,
-    PRIMARY KEY (Impiegato,Progetto),
-    FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
-    FOREIGN KEY (Progetto) REFERENCES Progetto(Sigla)
-);
 -- inserisco i dati nella tabella Partecipazione, inseriscimi 10 partecipazioni diverse
 INSERT INTO Partecipazione (Impiegato,Progetto) 
         VALUES (1,'Sigla 1'), 
@@ -93,8 +105,8 @@ INSERT INTO Partecipazione (Impiegato,Progetto)
         (9,'Sigla 9'), 
         (10,'Sigla 10');
 
-
--- devo aggiungere sulla tabellq Impiegato un vincolo di integrità referenziale che impedisca di inserire un impiegato con un dipartimento non esistente
+        
 ALTER TABLE Impiegato
     ADD CONSTRAINT FK_Dipartimento 
         Foreign Key (Dipartimento) REFERENCES Dipartimento(Codice);
+
