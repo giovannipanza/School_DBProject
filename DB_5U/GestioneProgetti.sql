@@ -13,9 +13,6 @@ CREATE TABLE Impiegato (
     -- FOREIGN KEY (Dipartimento) REFERENCES Dipartimento(Codice)
 );
 
--- inserisco i dati nella tabella Impiegato, inseriscimi 10 impiegati diversi
-
-
 -- creo la tabella Dipartimento (Codice,Nome,Sede,Direttore)
 CREATE TABLE Dipartimento (
     Codice INT AUTO_INCREMENT,
@@ -52,8 +49,7 @@ CREATE TABLE Partecipazione (
 
 
 
--- devo aggiungere sulla tabellq Impiegato un vincolo di integrità referenziale che impedisca di inserire un impiegato con un dipartimento non esistente
-
+-- inserisco i dati nella tabella Impiegato, inseriscimi 10 impiegati diversi
 
 INSERT INTO Impiegato (Matricola,Cognome,Stipendio,Dipartimento) 
         VALUES (1,'Rossi',1000,1), 
@@ -93,6 +89,9 @@ INSERT INTO Progetto (Sigla,Nome,Bilancio,Responsabile)
         ('Sigla 10','Progetto 10',10000,10);
 
 -- inserisco i dati nella tabella Partecipazione, inseriscimi 10 partecipazioni diverse
+ALTER TABLE Impiegato
+    ADD CONSTRAINT FK_Dipartimento 
+        Foreign Key (Dipartimento) REFERENCES Dipartimento(Codice);
 INSERT INTO Partecipazione (Impiegato,Progetto) 
         VALUES (1,'Sigla 1'), 
         (2,'Sigla 2'), 
@@ -106,7 +105,5 @@ INSERT INTO Partecipazione (Impiegato,Progetto)
         (10,'Sigla 10');
 
         
-ALTER TABLE Impiegato
-    ADD CONSTRAINT FK_Dipartimento 
-        Foreign Key (Dipartimento) REFERENCES Dipartimento(Codice);
+
 
