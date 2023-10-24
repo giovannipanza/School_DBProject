@@ -13,6 +13,19 @@ CREATE TABLE Impiegato (
     -- FOREIGN KEY (Dipartimento) REFERENCES Dipartimento(Codice)
 );
 
+-- inserisco i dati nella tabella Impiegato, inseriscimi 10 impiegati diversi
+INSERT INTO Impiegato (Matricola,Cognome,Stipendio,Dipartimento) 
+        VALUES (1,'Rossi',1000,1), 
+        (2,'Verdi',2000,2), 
+        (3,'Bianchi',3000,3), 
+        (4,'Neri',4000,4), 
+        (5,'Gialli',5000,5), 
+        (6,'Blu',6000,6), 
+        (7,'Arancioni',7000,7), 
+        (8,'Viola',8000,8), 
+        (9,'Rosa',9000,9), 
+        (10,'Marroni',10000,10);
+
 -- creo la tabella Dipartimento (Codice,Nome,Sede,Direttore)
 CREATE TABLE Dipartimento (
     Codice INT AUTO_INCREMENT,
