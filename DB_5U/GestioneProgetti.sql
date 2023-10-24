@@ -35,6 +35,18 @@ CREATE TABLE Dipartimento (
     PRIMARY KEY (Codice),
     FOREIGN KEY (Direttore) REFERENCES Impiegato(Matricola)
 );
+-- inserisco i dati nella tabella Dipartimento, inseriscimi 10 dipartimenti diversi
+INSERT INTO Dipartimento (Nome,Sede,Direttore) 
+        VALUES ('Dipartimento 1','Sede 1',1), 
+        ('Dipartimento 2','Sede 2',2), 
+        ('Dipartimento 3','Sede 3',3), 
+        ('Dipartimento 4','Sede 4',4), 
+        ('Dipartimento 5','Sede 5',5), 
+        ('Dipartimento 6','Sede 6',6), 
+        ('Dipartimento 7','Sede 7',7), 
+        ('Dipartimento 8','Sede 8',8), 
+        ('Dipartimento 9','Sede 9',9), 
+        ('Dipartimento 10','Sede 10',10);
 
 
 -- creo la tabella Progetto (Sigla,Nome,Bilancio,Responsabile)
@@ -47,6 +59,19 @@ CREATE TABLE Progetto (
     FOREIGN KEY (Responsabile) REFERENCES Impiegato(Matricola)
 );
 
+-- inserisco i dati nella tabella Progetto, inseriscimi 10 progetti diversi
+INSERT INTO Progetto (Sigla,Nome,Bilancio,Responsabile) 
+        VALUES ('Sigla 1','Progetto 1',1000,1), 
+        ('Sigla 2','Progetto 2',2000,2), 
+        ('Sigla 3','Progetto 3',3000,3), 
+        ('Sigla 4','Progetto 4',4000,4), 
+        ('Sigla 5','Progetto 5',5000,5), 
+        ('Sigla 6','Progetto 6',6000,6), 
+        ('Sigla 7','Progetto 7',7000,7), 
+        ('Sigla 8','Progetto 8',8000,8), 
+        ('Sigla 9','Progetto 9',9000,9), 
+        ('Sigla 10','Progetto 10',10000,10);
+
 -- creo la tabella Partecipazione (Impiegato,Progetto)
 CREATE TABLE Partecipazione (
     Impiegato INT NOT NULL,
@@ -55,6 +80,18 @@ CREATE TABLE Partecipazione (
     FOREIGN KEY (Impiegato) REFERENCES Impiegato(Matricola),
     FOREIGN KEY (Progetto) REFERENCES Progetto(Sigla)
 );
+-- inserisco i dati nella tabella Partecipazione, inseriscimi 10 partecipazioni diverse
+INSERT INTO Partecipazione (Impiegato,Progetto) 
+        VALUES (1,'Sigla 1'), 
+        (2,'Sigla 2'), 
+        (3,'Sigla 3'), 
+        (4,'Sigla 4'), 
+        (5,'Sigla 5'), 
+        (6,'Sigla 6'), 
+        (7,'Sigla 7'), 
+        (8,'Sigla 8'), 
+        (9,'Sigla 9'), 
+        (10,'Sigla 10');
 
 
 -- devo aggiungere sulla tabellq Impiegato un vincolo di integrità referenziale che impedisca di inserire un impiegato con un dipartimento non esistente
