@@ -1,4 +1,6 @@
 -- Dump della struttura del database fatturazione
+DROP DATABASE IF EXISTS `5q_fatturazione`;
+
 CREATE DATABASE IF NOT EXISTS `5q_fatturazione` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `5q_fatturazione`;
 
@@ -88,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `fatture_articoli` (
   `quantita` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_fattura`,`id_articolo`),
   foreign key(id_fattura) references fatture(id_fattura),
-  foreign Key (id_articolo) REFERENCES articolo(ID_articolo)
+  foreign Key (id_articolo) REFERENCES articoli(ID_articolo)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dump dei dati della tabella fatturazione.fatture_articoli: ~27 rows (circa)
