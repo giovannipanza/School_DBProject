@@ -10,6 +10,19 @@ CREATE TABLE Agenti (
     Nominativo VARCHAR(50)
 );
 
+-- aggiungo il campo nome e il campo cognome alla tabella Agenti
+ALTER TABLE Agenti
+    ADD Nomee VARCHAR(50),
+    ADD Cognome VARCHAR(50);
+
+-- rimuovo il campo nominativo dalla tabella Agenti
+ALTER TABLE Agenti
+    DROP Nominativo;
+
+-- rinomino il campo nome di Agenti in first_name
+ALTER TABLE Agenti
+    CHANGE Nomee Nome VARCHAR(50);
+
 -- Tabella Automobilisti
 CREATE TABLE Automobilisti (
     C_Fiscale CHAR(16) PRIMARY KEY,
@@ -129,18 +142,7 @@ INSERT INTO Infrazioni (Id_Infrazione, Data, Matricola, TipoInfrazione, Importo,
 
 
 
--- aggiungo il campo nome e il campo cognome alla tabella Agenti
-ALTER TABLE Agenti
-    ADD Nome VARCHAR(50),
-    ADD Cognome VARCHAR(50);
 
--- rimuovo il campo nominativo dalla tabella Agenti
-ALTER TABLE Agenti
-    DROP Nominativo;
-
--- rinomino il campo nome di Agenti in first_name
-ALTER TABLE Agenti
-    CHANGE Nome first_name VARCHAR(50);
 
 
 delete from automobilisti where C_Fiscale = 'C_Fiscale'; 
