@@ -120,3 +120,9 @@ REPLACE INTO `fatture_articoli` (`id_fattura`, `id_articolo`, `quantita`) VALUES
 	(16, 4, 3);
 /*!40000 ALTER TABLE `fatture_articoli` ENABLE KEYS */;
 
+-- Q1 Elenco di tutti gli articoli fatturati nell'anno 2013.
+SELECT descrizione, data from articoli a, fatture f, fatture_articoli fa
+	where a.`ID_articolo`=fa.`id_articolo` and f.`ID_fattura`=fa.`id_fattura` 
+			and data like '%2013%'; -- year(data)=2013;
+
+
