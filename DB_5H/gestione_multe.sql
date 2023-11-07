@@ -44,17 +44,18 @@ CREATE TABLE Infrazioni (
 
 -- data set Agenti
 -- Inserimento degli agenti
-INSERT INTO Agenti (Matricola, Nominativo) VALUES
-(101, 'Marco Bianchi'),
-(102, 'Laura Verdi'),
-(103, 'Giulia Romano'),
-(104, 'Simone Ferrari'),
-(105, 'Alessia Esposito'),
-(106, 'Luca Ricci'),
-(107, 'Sara Moretti'),
-(108, 'Fabio Russo'),
-(109, 'Elena Rossetti'),
-(110, 'Davide Giallo');
+INSERT INTO Agenti (Matricola, Nome, Cognome) VALUES
+(101, 'Marco', 'Bianchi'),
+(102, 'Laura', 'Verdi'),
+(103, 'Giulia', 'Romano'),
+(104, 'Simone', 'Ferrari'),
+(105, 'Alessia', 'Esposito'),
+(106, 'Luca', 'Ricci'),
+(107, 'Sara', 'Moretti'),
+(108, 'Fabio', 'Russo'),
+(109, 'Elena', 'Rossetti'),
+(110, 'Davide', 'Giallo');
+
 
 -- data set Automobilisti
 INSERT INTO Automobilisti (C_Fiscale, Nominativo, Indirizzo, Citta, CAP) VALUES
@@ -68,6 +69,7 @@ INSERT INTO Automobilisti (C_Fiscale, Nominativo, Indirizzo, Citta, CAP) VALUES
 ('VWX68024S', 'Chiara Rossetti', 'Via Dante 20', 'Verona', '37100'),
 ('YZA79135R', 'Elena Ferrara', 'Piazza Navona 12', 'Bologna', '40100'),
 ('BCD80246Q', 'Marco Russo', 'Corso Umberto 18', 'Genova', '16100');
+-- mi converti i dati inseriti in automobilisti in formato csv
 
 -- data set Auto
 INSERT INTO Auto (Targa, Marca, Modello, C_Fiscale) VALUES
@@ -125,3 +127,20 @@ INSERT INTO Infrazioni (Id_Infrazione, Data, Matricola, TipoInfrazione, Importo,
 (29, '2025-05-18', 109, 'Guida senza cintura', 80.00, 'AB890CD'),
 (30, '2025-06-20', 110, 'Attraversamento col rosso', 120.00, 'EF123GH');
 
+
+
+-- aggiungo il campo nome e il campo cognome alla tabella Agenti
+ALTER TABLE Agenti
+    ADD Nome VARCHAR(50),
+    ADD Cognome VARCHAR(50);
+
+-- rimuovo il campo nominativo dalla tabella Agenti
+ALTER TABLE Agenti
+    DROP Nominativo;
+
+-- rinomino il campo nome di Agenti in first_name
+ALTER TABLE Agenti
+    CHANGE Nome first_name VARCHAR(50);
+
+
+delete from automobilisti where C_Fiscale = 'C_Fiscale'; 
