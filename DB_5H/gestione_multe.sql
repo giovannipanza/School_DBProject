@@ -7,9 +7,10 @@ use gestione_multe_5h;
 -- Tabella Agenti
 CREATE TABLE Agenti (
     Matricola INT PRIMARY KEY,
-    Nominativo VARCHAR(50)
+    Nome VARCHAR(50),
+    Cognome varchar(50)
 );
-
+/*
 -- aggiungo il campo nome e il campo cognome alla tabella Agenti
 ALTER TABLE Agenti
     ADD Nomee VARCHAR(50),
@@ -22,6 +23,8 @@ ALTER TABLE Agenti
 -- rinomino il campo nome di Agenti in first_name
 ALTER TABLE Agenti
     CHANGE Nomee Nome VARCHAR(50);
+*/
+
 
 -- Tabella Automobilisti
 CREATE TABLE Automobilisti (
