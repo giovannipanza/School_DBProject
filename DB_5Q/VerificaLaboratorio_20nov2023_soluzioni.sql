@@ -42,7 +42,7 @@ CREATE TABLE iscritto(
 -- 3 Stampare tutti i dati degli alunni iscritti a corsi tenuti dalla prof.ssa Brunori
     select * from alunno a join iscritto i
         on a.id_alunno = i.id_alunno join corso c on i.id_corso = c.id_corso
-                            where c.nome = 'Elena';
+                            where c.nome = 'Elena' and c.cognome="Brunori";
 
 -- 4 Calcolare il totale incassato ad oggi per il corso n. 1 (cybersecurity) prendendo in considerazione tutti gli studenti che hanno pagato la 1 rata o la 2 rata, ma anche quelli che hanno pagato entrambe le rate e fai la somma
 select sum(
@@ -103,10 +103,10 @@ WHERE 2rata = 'no')
         join corso c on i.id_insegnante = c.id_insegnante
                              where c.importo1rata+c.importo2rata < 300;
 
--- 11Trovare eventuali corsi a cui non è stato ancora assegnato nessun insegnante
+-- 11 Trovare eventuali corsi a cui non è stato ancora assegnato nessun insegnante
     select c.nome from corso c where c.id_insegnante is null;
 
--- 12Trovare il numero di corsi insegnati da ciascun docente (nome e cognome)
+-- 12 Trovare il numero di corsi insegnati da ciascun docente (nome e cognome)
 select i.nome, i.cognome, count(c.id_insegnante) as numero_corsi from insegnante i
         join corso c on i.id_insegnante = c.id_insegnante
         group by i.nome, i.cognome;
