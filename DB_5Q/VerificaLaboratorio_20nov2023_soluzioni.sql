@@ -45,7 +45,7 @@ CREATE TABLE iscritto(
                             where c.nome = 'Elena' and c.cognome="Brunori";
 
 -- 4 Calcolare il totale incassato ad oggi per il corso n. 1 (cybersecurity) prendendo in considerazione tutti gli studenti che hanno pagato la 1 rata o la 2 rata, ma anche quelli che hanno pagato entrambe le rate e fai la somma
-select sum(
+select (
     (
     SELECT SUM(importo1rata)   AS totale_1rata
     FROM corso c
@@ -60,6 +60,7 @@ select sum(
     WHERE (c.id_corso = 1 AND 2rata='si')
     )
        );
+
 -- 5 Stampare tutti i dati dei corsi che hanno un costo totale superiore alla media
     select * from corso where importo1rata+importo2rata > (select avg(importo1rata+importo2rata) from corso);
 
