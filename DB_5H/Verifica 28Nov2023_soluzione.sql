@@ -79,10 +79,17 @@ CREATE TABLE asl(
     regione VARCHAR(16),
     descrizione_azienda VARCHAR(16)
 );
+-- occorre a questo punto effettuare delle modifiche alle altre tabelle del database
+-- NB. Eseguire prima la QUERY N.14 (INSERT) altrimenti errore
+ALTER TABLE pazienti ADD FOREIGN KEY (codice_asl) REFERENCES asl(codice);
 
 -- 14. Scrivere le query di inserimento in modo che siano presenti i seguenti valori:
-    INSERT INTO ASL (codice, regione, descrizione_azienda) VALUES ('LU102', 'Toscana', 'Lucca'), ('PO104', 'Toscana', 'Prato'), ('SI107', 'Toscana', 'Siena'), ('FE109', 'Emilia Romagna', 'Azienda USL Ferrara
-'), ('LU112', 'Toscana', 'Versilia');
+INSERT INTO ASL (codice, regione, descrizione_azienda)
+    VALUES ('LU102', 'Toscana', 'Lucca'),
+           ('PO104', 'Toscana', 'Prato'),
+           ('SI107', 'Toscana', 'Siena'),
+           ('FE109', 'Emilia Romagna', 'Azienda USL Ferrara'),
+           ('LU112', 'Toscana', 'Versilia');
 
 -- 15 Modificare eventuali record nella tabella dei pazienti che non abbiano assegnato un codice ASL, assegnandoli all’ASL di Prato.
     UPDATE pazienti
@@ -91,7 +98,8 @@ CREATE TABLE asl(
 
 -- 16 Eliminare dalla tabella delle ASL la riga corrispondente alla descrizione “Lucca”. È possibile farlo? Perché? Spiegare.
     DELETE FROM asl WHERE descrizione_azienda = 'Lucca';
-    -- Non è possibile farlo perché la riga è referenziata dalla tabella pazienti
+    -- Non è possibile farlo perché la riga è referenziata dalla tabella pazienti e ci sono pazienti con asl a Lucca
+    -- con  ON DELETE CASCADE sarebbe possibile farlo ma ....
 
 -- 17 (a) Calcolare la quantità di visite effettuate per ciascuna ASL, ordinate da quella meno numerosa a quella più numerosa.
 SELECT codice_asl, COUNT(*) AS visite FROM pazienti GROUP BY codice_asl ORDER BY visite;
@@ -104,6 +112,6 @@ SELECT * FROM pazienti ORDER BY data_nascita DESC LIMIT 3;
 -- 19. Stampare tutti i dati delle ASL che si trovano al di fuori della Toscana.
 SELECT * FROM asl WHERE regione != 'Toscana';
 
--- 20. Eliminare l  a colonna della provincia di nascita dalla tabella dei pazienti.
+-- 20. Eliminare la colonna della provincia di nascita dalla tabella dei pazienti.
 ALTER TABLE pazienti
     DROP COLUMN provincia_nascita;
