@@ -79,8 +79,13 @@ CREATE TABLE asl(
     regione VARCHAR(16),
     descrizione_azienda VARCHAR(16)
 );
--- occorre a questo punto effettuare delle modifiche alle altre tabelle del database
--- NB. Eseguire prima la QUERY N.14 (INSERT) altrimenti errore
+/*
+     occorre a questo punto:
+     1) eseguire la query n.14 (Insert....);
+     2) effettuare delle modifiche alla tabella Paziente
+     inserendo i codici_asl mancanti (NULL);
+     3) Aggiungere il foreign key alla tabella dei pazienti.
+ */
 ALTER TABLE pazienti ADD FOREIGN KEY (codice_asl) REFERENCES asl(codice);
 
 -- 14. Scrivere le query di inserimento in modo che siano presenti i seguenti valori:
