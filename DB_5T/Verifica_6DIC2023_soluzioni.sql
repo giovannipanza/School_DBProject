@@ -1,7 +1,7 @@
-create database if not exists `DB_5H_visite`;
+create database if not exists `DB_5T_visite`;
        /*!40100 default character set utf8 */;
 
-         use `DB_5H_visite`;
+         use `DB_5T_visite`;
 
 -- 1
 CREATE TABLE pazienti(
