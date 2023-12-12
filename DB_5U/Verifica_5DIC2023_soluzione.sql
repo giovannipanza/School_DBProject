@@ -1,5 +1,6 @@
 
-
+create database GestioneCorsi_5U;
+use GestioneCorsi_5U;
 --creazione tabelle alunno, insegnante, corso, iscritto
 CREATE TABLE alunno(
     id_alunno INT NOT NULL PRIMARY KEY,
@@ -33,36 +34,48 @@ CREATE TABLE iscritto(
 );
 
 -- 1 Calcolare la media del costo complessivo dei corsi.
-    select avg(importo1rata+importo2rata) from corso;
+    select avg(importo1rata+importo2rata) as TotaleCorsi from corso;
 
 -- 2 Trovare tutti i corsi (codice e nome) a cui è iscritto l’alunno “Pistone Mario”
     select c.codice, c.nome from corso c join iscrizione i
         on c.codice = i.codicecorso join alunno a on i.codicealunno = a.codice
                             where a.nome = 'Pistone' and a.cognome = 'Mario';
+
+-- 2 Trovare tutti i corsi (codice e nome) a cui è iscritto l’alunno “Pistone Mario” - utilizza le query nidificate
+    select c.codice, c.nome from corso c
+        where c.codice in (select i.codicecorso from iscrizione i
+        where i.codicealunno in (select a.codice from alunno a
+                            where a.nome = 'Pistone' and a.cognome = 'Mario'));
+
 -- 3 Stampare tutti i dati degli alunni iscritti a corsi tenuti dalla prof.ssa Brunori
     select * from alunno a join iscritto i
         on a.id_alunno = i.id_alunno join corso c on i.id_corso = c.id_corso
-                            where c.nome = 'Elena' and c.cognome="Brunori";
+        join insegnante ins on c.id_insegnante=ins.id_insegnante
+                            where ins.nome = 'Elena' and ins.cognome='Brunori';
 
--- 4 Calcolare il totale incassato ad oggi per il corso n. 1 (cybersecurity) prendendo in considerazione tutti gli studenti che hanno pagato la 1 rata o la 2 rata, ma anche quelli che hanno pagato entrambe le rate e fai la somma
+/* 4 Calcolare il totale incassato ad oggi per il corso n. 1 (cybersecurity)
+   prendendo in considerazione tutti gli studenti che hanno pagato la 1 rata o
+   la 2 rata, ma anche quelli che hanno pagato entrambe le rate e fai la somma
+ */
 select (
     (
-    SELECT SUM(importo1rata)   AS totale_1rata
+    SELECT SUM(importo1rata)
     FROM corso c
     JOIN iscritto i ON c.id_corso = i.id_corso
     WHERE (c.id_corso = 1 AND 1rata='si')
     )
                +
     (
-    SELECT SUM(importo2rata)   AS totale_2rata
+    SELECT SUM(importo2rata)
     FROM corso c
     JOIN iscritto i ON c.id_corso = i.id_corso
     WHERE (c.id_corso = 1 AND 2rata='si')
     )
-       );
+       ) as totale_incassato;
 
 -- 5 Stampare tutti i dati dei corsi che hanno un costo totale superiore alla media
-    select * from corso where importo1rata+importo2rata > (select avg(importo1rata+importo2rata) from corso);
+    select * from corso where importo1rata+importo2rata > 
+                              (select avg(importo1rata+importo2rata) from corso);
 
 
 -- 6 Calcolare il numero di rate non pagate
